@@ -5,11 +5,64 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/484e6509e8.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <div class="notification is-info">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="notification is-danger">
+        <p class="alert"><%= alert  %></p>
+      </div>
+    <% end %>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <p class="navbar-item">
+          <%= link_to root_path do %>
+            <strong class="is-size-3" style="font-family: cursive; color: black;">Shop reviews</strong>
+          <% end %>
+        </p>
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <%= link_to root_path, class: "navbar-item" do %>
+            Shops
+          <% end %>
+        </div>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <% if user_signed_in? %>
+              <p class="navbar-item">Welcome to <%= current_user.username %></p>
+            <% end %>
+            <div class="buttons">
+              <% if user_signed_in? %>
+                <%= link_to destroy_user_session_path, method: :delete, class: "button" do %>
+                  Sign Out
+                <% end %>
+              <% else %>
+                <%= link_to new_user_session_path, class: "button" do %>
+                  Sign In
+                <% end %>
+                <%= link_to new_user_registration_path, class: "button" do %>
+                  Sign Up
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>
