@@ -13,15 +13,22 @@
               <div class="content">
                 <div class="content average-score">
                   <div class="star-rating mb-2">
-                    <div class="star-rating-front" style="width: %">★★★★★</div>
+                    <div class="star-rating-front" style="width: <%= shop.review_score_percentage %>%">★★★★★</div>
                     <div class="star-rating-back">★★★★★</div>
                   </div>
                   <div class="average-score-display ml-3 pt-2">
+                    <%= shop.avg_score %>点 (<%= shop.reviews.count%>件のレビュー)
                   </div>
                 </div>
               </div>
             </div>
             <footer class="card-footer">
+              <%= link_to shop_reviews_path(shop), class: "button card-footer-item" do %>
+                Show Review
+              <% end %>
+              <%= link_to shop_path(shop), class: "button card-footer-item" do %>
+                Create Review
+              <% end %>
             </footer>
           </div>
         <% end %>
