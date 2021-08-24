@@ -15,4 +15,20 @@ for(let i=0; i<stars.length; i++) {
       stars[j].classList.add("fa-star")
     }
   })
+  stars[i].addEventListener("click", function() {
+    raitngValue.value = i + 1
+    ratingValueDisplay.textContent = raitngValue.value
+    index = i
+  })
+
+  stars[i].addEventListener("mouseout", function() {
+    for(let j=0; j<stars.length; j++) {
+      stars[j].classList.remove("fa-star")
+      stars[j].classList.add("fa-star-o")
+    }
+    for(let j=0; j<=index; j++) {
+      stars[j].classList.remove("fa-star-o")
+      stars[j].classList.add("fa-star")
+    }
+  })
 }
