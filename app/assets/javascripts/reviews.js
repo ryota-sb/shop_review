@@ -1,5 +1,5 @@
 const stars = document.querySelector(".ratings").children
-const raitngValue = doucment.getElementById("rating-value")
+const raitngValue = document.getElementById("rating-value")
 const ratingValueDisplay = document.getElementById("rating-value-display")
 
 let index
